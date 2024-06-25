@@ -17,6 +17,9 @@
 		496AFFD42C29B1C8001D516C /* PokeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFD32C29B1C8001D516C /* PokeListView.swift */; };
 		496AFFD62C2A80BD001D516C /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFD52C2A80BD001D516C /* Pokemon.swift */; };
 		496AFFDA2C2A85EB001D516C /* PokemonListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFD92C2A85EB001D516C /* PokemonListModel.swift */; };
+		496AFFDD2C2AA6CD001D516C /* FiredTofu in Frameworks */ = {isa = PBXBuildFile; productRef = 496AFFDC2C2AA6CD001D516C /* FiredTofu */; };
+		496AFFE02C2AAC96001D516C /* PokemonListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFDF2C2AAC96001D516C /* PokemonListRequest.swift */; };
+		496AFFE32C2AC74C001D516C /* APIError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFE22C2AC74C001D516C /* APIError+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,8 @@
 		496AFFD32C29B1C8001D516C /* PokeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeListView.swift; sourceTree = "<group>"; };
 		496AFFD52C2A80BD001D516C /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		496AFFD92C2A85EB001D516C /* PokemonListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListModel.swift; sourceTree = "<group>"; };
+		496AFFDF2C2AAC96001D516C /* PokemonListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListRequest.swift; sourceTree = "<group>"; };
+		496AFFE22C2AC74C001D516C /* APIError+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIError+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				496AFFDD2C2AA6CD001D516C /* FiredTofu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,8 +106,10 @@
 		496AFFA72C29B05C001D516C /* GoGoPokemonLook */ = {
 			isa = PBXGroup;
 			children = (
+				496AFFDE2C2AAC80001D516C /* APIRequest */,
 				496AFFD72C2A80C5001D516C /* Model */,
 				496AFFD22C29B1A2001D516C /* View */,
+				496AFFE12C2AC710001D516C /* Helper */,
 				496AFFA82C29B05C001D516C /* GoGoPokemonLookApp.swift */,
 				496AFFAA2C29B05C001D516C /* ContentView.swift */,
 				496AFFAC2C29B05D001D516C /* Assets.xcassets */,
@@ -160,6 +168,22 @@
 			path = PokeListView;
 			sourceTree = "<group>";
 		};
+		496AFFDE2C2AAC80001D516C /* APIRequest */ = {
+			isa = PBXGroup;
+			children = (
+				496AFFDF2C2AAC96001D516C /* PokemonListRequest.swift */,
+			);
+			path = APIRequest;
+			sourceTree = "<group>";
+		};
+		496AFFE12C2AC710001D516C /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				496AFFE22C2AC74C001D516C /* APIError+Extension.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -176,6 +200,9 @@
 			dependencies = (
 			);
 			name = GoGoPokemonLook;
+			packageProductDependencies = (
+				496AFFDC2C2AA6CD001D516C /* FiredTofu */,
+			);
 			productName = GoGoPokemonLook;
 			productReference = 496AFFA52C29B05C001D516C /* GoGoPokemonLook.app */;
 			productType = "com.apple.product-type.application";
@@ -248,6 +275,9 @@
 				Base,
 			);
 			mainGroup = 496AFF9C2C29B05C001D516C;
+			packageReferences = (
+				496AFFDB2C2AA6CD001D516C /* XCRemoteSwiftPackageReference "FiredTofu" */,
+			);
 			productRefGroup = 496AFFA62C29B05C001D516C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -292,9 +322,11 @@
 			files = (
 				496AFFD42C29B1C8001D516C /* PokeListView.swift in Sources */,
 				496AFFD62C2A80BD001D516C /* Pokemon.swift in Sources */,
+				496AFFE32C2AC74C001D516C /* APIError+Extension.swift in Sources */,
 				496AFFAB2C29B05C001D516C /* ContentView.swift in Sources */,
 				496AFFDA2C2A85EB001D516C /* PokemonListModel.swift in Sources */,
 				496AFFA92C29B05C001D516C /* GoGoPokemonLookApp.swift in Sources */,
+				496AFFE02C2AAC96001D516C /* PokemonListRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,6 +656,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		496AFFDB2C2AA6CD001D516C /* XCRemoteSwiftPackageReference "FiredTofu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rickhung76/FiredTofu";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		496AFFDC2C2AA6CD001D516C /* FiredTofu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 496AFFDB2C2AA6CD001D516C /* XCRemoteSwiftPackageReference "FiredTofu" */;
+			productName = FiredTofu;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 496AFF9D2C29B05C001D516C /* Project object */;
 }

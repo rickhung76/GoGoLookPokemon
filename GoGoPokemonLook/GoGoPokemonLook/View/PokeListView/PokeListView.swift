@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import FiredTofu
 
 struct PokeListView: View {
 	
 	@ObservedObject var model = PokemonListModel(
-		pokemonDataProvider: MockPokemonListDataProvider()
+		pokemonDataProvider: HttpClient.default
 	)
 
     var body: some View {

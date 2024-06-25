@@ -2,7 +2,7 @@ import Foundation
 import Combine
 
 protocol PokemonListDataProvider {
-	func fetch(offset: Int, limit: Int) -> AnyPublisher<[Pokemon], Error>
+	func fetch(offset: Int, limit: Int) -> AnyPublisher<PokemonList, NSError>
 }
 
 class PokemonListModel: ObservableObject {
@@ -13,7 +13,7 @@ class PokemonListModel: ObservableObject {
 	
 	private var cancelable = Set<AnyCancellable>()
 	
-	var offset = 1
+	var offset = 0
 	
 	var limit = 20
 	
@@ -34,20 +34,9 @@ class PokemonListModel: ObservableObject {
 			.sink { [weak self] completion in
 				guard let self else { return }
 				self.offset += self.limit
-			} receiveValue: { [weak self] models in
-				self?.pokemons.append(contentsOf: models)
+			} receiveValue: { [weak self] model in
+				self?.pokemons.append(contentsOf: model.results)
 			}.store(in: &cancelable)
 	}
 }
 
-struct MockPokemonListDataProvider: PokemonListDataProvider {
-	func fetch(offset: Int, limit: Int) -> AnyPublisher<[Pokemon], any Error> {
-		var data: [Pokemon] = []
-		for i in offset ..< (offset + limit) {
-			data.append(Pokemon(id: i, name: "妙蛙種子\(i)"))
-		}
-		return Just(data)
-		.setFailureType(to: Error.self)
-		.eraseToAnyPublisher()
-	}
-}
