@@ -1,0 +1,629 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		496AFFA92C29B05C001D516C /* GoGoPokemonLookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFA82C29B05C001D516C /* GoGoPokemonLookApp.swift */; };
+		496AFFAB2C29B05C001D516C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFAA2C29B05C001D516C /* ContentView.swift */; };
+		496AFFAD2C29B05D001D516C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 496AFFAC2C29B05D001D516C /* Assets.xcassets */; };
+		496AFFB02C29B05D001D516C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 496AFFAF2C29B05D001D516C /* Preview Assets.xcassets */; };
+		496AFFBA2C29B05D001D516C /* GoGoPokemonLookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFB92C29B05D001D516C /* GoGoPokemonLookTests.swift */; };
+		496AFFC42C29B05D001D516C /* GoGoPokemonLookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFC32C29B05D001D516C /* GoGoPokemonLookUITests.swift */; };
+		496AFFC62C29B05D001D516C /* GoGoPokemonLookUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFC52C29B05D001D516C /* GoGoPokemonLookUITestsLaunchTests.swift */; };
+		496AFFD42C29B1C8001D516C /* PokeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFD32C29B1C8001D516C /* PokeListView.swift */; };
+		496AFFD62C2A80BD001D516C /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFD52C2A80BD001D516C /* Pokemon.swift */; };
+		496AFFDA2C2A85EB001D516C /* PokemonListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFD92C2A85EB001D516C /* PokemonListModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		496AFFB62C29B05D001D516C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 496AFF9D2C29B05C001D516C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 496AFFA42C29B05C001D516C;
+			remoteInfo = GoGoPokemonLook;
+		};
+		496AFFC02C29B05D001D516C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 496AFF9D2C29B05C001D516C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 496AFFA42C29B05C001D516C;
+			remoteInfo = GoGoPokemonLook;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		496AFFA52C29B05C001D516C /* GoGoPokemonLook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoGoPokemonLook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		496AFFA82C29B05C001D516C /* GoGoPokemonLookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoGoPokemonLookApp.swift; sourceTree = "<group>"; };
+		496AFFAA2C29B05C001D516C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		496AFFAC2C29B05D001D516C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		496AFFAF2C29B05D001D516C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		496AFFB52C29B05D001D516C /* GoGoPokemonLookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoGoPokemonLookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		496AFFB92C29B05D001D516C /* GoGoPokemonLookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoGoPokemonLookTests.swift; sourceTree = "<group>"; };
+		496AFFBF2C29B05D001D516C /* GoGoPokemonLookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoGoPokemonLookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		496AFFC32C29B05D001D516C /* GoGoPokemonLookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoGoPokemonLookUITests.swift; sourceTree = "<group>"; };
+		496AFFC52C29B05D001D516C /* GoGoPokemonLookUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoGoPokemonLookUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		496AFFD32C29B1C8001D516C /* PokeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeListView.swift; sourceTree = "<group>"; };
+		496AFFD52C2A80BD001D516C /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		496AFFD92C2A85EB001D516C /* PokemonListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		496AFFA22C29B05C001D516C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		496AFFB22C29B05D001D516C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		496AFFBC2C29B05D001D516C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		496AFF9C2C29B05C001D516C = {
+			isa = PBXGroup;
+			children = (
+				496AFFA72C29B05C001D516C /* GoGoPokemonLook */,
+				496AFFB82C29B05D001D516C /* GoGoPokemonLookTests */,
+				496AFFC22C29B05D001D516C /* GoGoPokemonLookUITests */,
+				496AFFA62C29B05C001D516C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		496AFFA62C29B05C001D516C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				496AFFA52C29B05C001D516C /* GoGoPokemonLook.app */,
+				496AFFB52C29B05D001D516C /* GoGoPokemonLookTests.xctest */,
+				496AFFBF2C29B05D001D516C /* GoGoPokemonLookUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		496AFFA72C29B05C001D516C /* GoGoPokemonLook */ = {
+			isa = PBXGroup;
+			children = (
+				496AFFD72C2A80C5001D516C /* Model */,
+				496AFFD22C29B1A2001D516C /* View */,
+				496AFFA82C29B05C001D516C /* GoGoPokemonLookApp.swift */,
+				496AFFAA2C29B05C001D516C /* ContentView.swift */,
+				496AFFAC2C29B05D001D516C /* Assets.xcassets */,
+				496AFFAE2C29B05D001D516C /* Preview Content */,
+			);
+			path = GoGoPokemonLook;
+			sourceTree = "<group>";
+		};
+		496AFFAE2C29B05D001D516C /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				496AFFAF2C29B05D001D516C /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		496AFFB82C29B05D001D516C /* GoGoPokemonLookTests */ = {
+			isa = PBXGroup;
+			children = (
+				496AFFB92C29B05D001D516C /* GoGoPokemonLookTests.swift */,
+			);
+			path = GoGoPokemonLookTests;
+			sourceTree = "<group>";
+		};
+		496AFFC22C29B05D001D516C /* GoGoPokemonLookUITests */ = {
+			isa = PBXGroup;
+			children = (
+				496AFFC32C29B05D001D516C /* GoGoPokemonLookUITests.swift */,
+				496AFFC52C29B05D001D516C /* GoGoPokemonLookUITestsLaunchTests.swift */,
+			);
+			path = GoGoPokemonLookUITests;
+			sourceTree = "<group>";
+		};
+		496AFFD22C29B1A2001D516C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				496AFFD82C2A85CC001D516C /* PokeListView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		496AFFD72C2A80C5001D516C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				496AFFD52C2A80BD001D516C /* Pokemon.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		496AFFD82C2A85CC001D516C /* PokeListView */ = {
+			isa = PBXGroup;
+			children = (
+				496AFFD32C29B1C8001D516C /* PokeListView.swift */,
+				496AFFD92C2A85EB001D516C /* PokemonListModel.swift */,
+			);
+			path = PokeListView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		496AFFA42C29B05C001D516C /* GoGoPokemonLook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 496AFFC92C29B05D001D516C /* Build configuration list for PBXNativeTarget "GoGoPokemonLook" */;
+			buildPhases = (
+				496AFFA12C29B05C001D516C /* Sources */,
+				496AFFA22C29B05C001D516C /* Frameworks */,
+				496AFFA32C29B05C001D516C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GoGoPokemonLook;
+			productName = GoGoPokemonLook;
+			productReference = 496AFFA52C29B05C001D516C /* GoGoPokemonLook.app */;
+			productType = "com.apple.product-type.application";
+		};
+		496AFFB42C29B05D001D516C /* GoGoPokemonLookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 496AFFCC2C29B05D001D516C /* Build configuration list for PBXNativeTarget "GoGoPokemonLookTests" */;
+			buildPhases = (
+				496AFFB12C29B05D001D516C /* Sources */,
+				496AFFB22C29B05D001D516C /* Frameworks */,
+				496AFFB32C29B05D001D516C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				496AFFB72C29B05D001D516C /* PBXTargetDependency */,
+			);
+			name = GoGoPokemonLookTests;
+			productName = GoGoPokemonLookTests;
+			productReference = 496AFFB52C29B05D001D516C /* GoGoPokemonLookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		496AFFBE2C29B05D001D516C /* GoGoPokemonLookUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 496AFFCF2C29B05D001D516C /* Build configuration list for PBXNativeTarget "GoGoPokemonLookUITests" */;
+			buildPhases = (
+				496AFFBB2C29B05D001D516C /* Sources */,
+				496AFFBC2C29B05D001D516C /* Frameworks */,
+				496AFFBD2C29B05D001D516C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				496AFFC12C29B05D001D516C /* PBXTargetDependency */,
+			);
+			name = GoGoPokemonLookUITests;
+			productName = GoGoPokemonLookUITests;
+			productReference = 496AFFBF2C29B05D001D516C /* GoGoPokemonLookUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		496AFF9D2C29B05C001D516C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					496AFFA42C29B05C001D516C = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					496AFFB42C29B05D001D516C = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 496AFFA42C29B05C001D516C;
+					};
+					496AFFBE2C29B05D001D516C = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 496AFFA42C29B05C001D516C;
+					};
+				};
+			};
+			buildConfigurationList = 496AFFA02C29B05C001D516C /* Build configuration list for PBXProject "GoGoPokemonLook" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 496AFF9C2C29B05C001D516C;
+			productRefGroup = 496AFFA62C29B05C001D516C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				496AFFA42C29B05C001D516C /* GoGoPokemonLook */,
+				496AFFB42C29B05D001D516C /* GoGoPokemonLookTests */,
+				496AFFBE2C29B05D001D516C /* GoGoPokemonLookUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		496AFFA32C29B05C001D516C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				496AFFB02C29B05D001D516C /* Preview Assets.xcassets in Resources */,
+				496AFFAD2C29B05D001D516C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		496AFFB32C29B05D001D516C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		496AFFBD2C29B05D001D516C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		496AFFA12C29B05C001D516C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				496AFFD42C29B1C8001D516C /* PokeListView.swift in Sources */,
+				496AFFD62C2A80BD001D516C /* Pokemon.swift in Sources */,
+				496AFFAB2C29B05C001D516C /* ContentView.swift in Sources */,
+				496AFFDA2C2A85EB001D516C /* PokemonListModel.swift in Sources */,
+				496AFFA92C29B05C001D516C /* GoGoPokemonLookApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		496AFFB12C29B05D001D516C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				496AFFBA2C29B05D001D516C /* GoGoPokemonLookTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		496AFFBB2C29B05D001D516C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				496AFFC42C29B05D001D516C /* GoGoPokemonLookUITests.swift in Sources */,
+				496AFFC62C29B05D001D516C /* GoGoPokemonLookUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		496AFFB72C29B05D001D516C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 496AFFA42C29B05C001D516C /* GoGoPokemonLook */;
+			targetProxy = 496AFFB62C29B05D001D516C /* PBXContainerItemProxy */;
+		};
+		496AFFC12C29B05D001D516C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 496AFFA42C29B05C001D516C /* GoGoPokemonLook */;
+			targetProxy = 496AFFC02C29B05D001D516C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		496AFFC72C29B05D001D516C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		496AFFC82C29B05D001D516C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		496AFFCA2C29B05D001D516C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GoGoPokemonLook/Preview Content\"";
+				DEVELOPMENT_TEAM = 9BSJYXKM57;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rickh.GoGoPokemonLook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		496AFFCB2C29B05D001D516C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GoGoPokemonLook/Preview Content\"";
+				DEVELOPMENT_TEAM = 9BSJYXKM57;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rickh.GoGoPokemonLook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		496AFFCD2C29B05D001D516C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9BSJYXKM57;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rickh.GoGoPokemonLookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoGoPokemonLook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GoGoPokemonLook";
+			};
+			name = Debug;
+		};
+		496AFFCE2C29B05D001D516C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9BSJYXKM57;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rickh.GoGoPokemonLookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoGoPokemonLook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GoGoPokemonLook";
+			};
+			name = Release;
+		};
+		496AFFD02C29B05D001D516C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9BSJYXKM57;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rickh.GoGoPokemonLookUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GoGoPokemonLook;
+			};
+			name = Debug;
+		};
+		496AFFD12C29B05D001D516C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9BSJYXKM57;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rickh.GoGoPokemonLookUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GoGoPokemonLook;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		496AFFA02C29B05C001D516C /* Build configuration list for PBXProject "GoGoPokemonLook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				496AFFC72C29B05D001D516C /* Debug */,
+				496AFFC82C29B05D001D516C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		496AFFC92C29B05D001D516C /* Build configuration list for PBXNativeTarget "GoGoPokemonLook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				496AFFCA2C29B05D001D516C /* Debug */,
+				496AFFCB2C29B05D001D516C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		496AFFCC2C29B05D001D516C /* Build configuration list for PBXNativeTarget "GoGoPokemonLookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				496AFFCD2C29B05D001D516C /* Debug */,
+				496AFFCE2C29B05D001D516C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		496AFFCF2C29B05D001D516C /* Build configuration list for PBXNativeTarget "GoGoPokemonLookUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				496AFFD02C29B05D001D516C /* Debug */,
+				496AFFD12C29B05D001D516C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 496AFF9D2C29B05C001D516C /* Project object */;
+}
