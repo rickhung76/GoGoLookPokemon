@@ -6,8 +6,18 @@ protocol PokemonListDataProvider {
 }
 
 class PokemonListModel: ObservableObject {
+	
+	enum State {
+		case idle
+		case loading
+		case loaded([Pokemon])
+		case error(Error)
+	}
+	
+	@Published
+	var state: State = .idle
 		
-	@Published var pokemons: [Pokemon] = []
+	var pokemons: [Pokemon] = []
 	
 	private let pokemonDataProvider: PokemonListDataProvider
 	
@@ -23,20 +33,28 @@ class PokemonListModel: ObservableObject {
 	) {
 		self.pokemons = pokemons
 		self.pokemonDataProvider = pokemonDataProvider
-	
-		fetchPokemons(offset: offset, limit: limit)
 	}
 	
 	func fetchPokemons(offset: Int, limit: Int) {
+		
+		state = .loading
+		
 		pokemonDataProvider
 			.fetch(offset: offset, limit: limit)
-			.receive(on: DispatchQueue.main)
 			.sink { [weak self] completion in
 				guard let self else { return }
-				self.offset += self.limit
+				
+				switch completion {
+				case .finished:
+					self.offset += self.limit
+					self.state = .loaded(self.pokemons)
+				case .failure(let error):
+					self.state = .error(error)
+				}
 			} receiveValue: { [weak self] model in
-				self?.pokemons.append(contentsOf: model.results)
+				guard let self else { return }
+				
+				self.pokemons.append(contentsOf: model.results)
 			}.store(in: &cancelable)
 	}
 }
-

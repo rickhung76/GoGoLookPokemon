@@ -28,6 +28,12 @@ struct PokeListView: View {
 					)
 				}
 		}
+		.onAppear {
+			model.fetchPokemons(
+				offset: model.offset,
+				limit: model.limit
+			)
+		}
     }
 }
 
