@@ -20,6 +20,7 @@
 		496AFFDD2C2AA6CD001D516C /* FiredTofu in Frameworks */ = {isa = PBXBuildFile; productRef = 496AFFDC2C2AA6CD001D516C /* FiredTofu */; };
 		496AFFE02C2AAC96001D516C /* PokemonListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFDF2C2AAC96001D516C /* PokemonListRequest.swift */; };
 		496AFFE32C2AC74C001D516C /* APIError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFE22C2AC74C001D516C /* APIError+Extension.swift */; };
+		496AFFE62C2ACB1E001D516C /* PokemonListModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFE52C2ACB1E001D516C /* PokemonListModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		496AFFD92C2A85EB001D516C /* PokemonListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListModel.swift; sourceTree = "<group>"; };
 		496AFFDF2C2AAC96001D516C /* PokemonListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListRequest.swift; sourceTree = "<group>"; };
 		496AFFE22C2AC74C001D516C /* APIError+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIError+Extension.swift"; sourceTree = "<group>"; };
+		496AFFE52C2ACB1E001D516C /* PokemonListModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		496AFFB82C29B05D001D516C /* GoGoPokemonLookTests */ = {
 			isa = PBXGroup;
 			children = (
+				496AFFE42C2ACAFC001D516C /* ViewModel */,
 				496AFFB92C29B05D001D516C /* GoGoPokemonLookTests.swift */,
 			);
 			path = GoGoPokemonLookTests;
@@ -182,6 +185,14 @@
 				496AFFE22C2AC74C001D516C /* APIError+Extension.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		496AFFE42C2ACAFC001D516C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				496AFFE52C2ACB1E001D516C /* PokemonListModelTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				496AFFBA2C29B05D001D516C /* GoGoPokemonLookTests.swift in Sources */,
+				496AFFE62C2ACB1E001D516C /* PokemonListModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
