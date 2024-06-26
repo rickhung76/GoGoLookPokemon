@@ -11,7 +11,6 @@ struct PokemonDetail: Decodable, Hashable {
 	
 	let id: Int
 	let name: String
-	let forms: [SpeciesElement]
 	let species: SpeciesElement
 	let sprites: Sprites
 	let types: [TypeElement]

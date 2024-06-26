@@ -29,6 +29,7 @@
 		496AFFF62C2BFC4D001D516C /* SpeciesDetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFF52C2BFC4D001D516C /* SpeciesDetailRequest.swift */; };
 		496AFFF82C2C0A98001D516C /* EvolutionChainRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFF72C2C0A98001D516C /* EvolutionChainRequest.swift */; };
 		496AFFFA2C2C0B0D001D516C /* EvolutionChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFF92C2C0B0D001D516C /* EvolutionChain.swift */; };
+		496AFFFC2C2C1EC4001D516C /* PokemonDetailModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFFB2C2C1EC4001D516C /* PokemonDetailModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		496AFFF52C2BFC4D001D516C /* SpeciesDetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciesDetailRequest.swift; sourceTree = "<group>"; };
 		496AFFF72C2C0A98001D516C /* EvolutionChainRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionChainRequest.swift; sourceTree = "<group>"; };
 		496AFFF92C2C0B0D001D516C /* EvolutionChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionChain.swift; sourceTree = "<group>"; };
+		496AFFFB2C2C1EC4001D516C /* PokemonDetailModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				496AFFE52C2ACB1E001D516C /* PokemonListModelTests.swift */,
+				496AFFFB2C2C1EC4001D516C /* PokemonDetailModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 			files = (
 				496AFFBA2C29B05D001D516C /* GoGoPokemonLookTests.swift in Sources */,
 				496AFFE62C2ACB1E001D516C /* PokemonListModelTests.swift in Sources */,
+				496AFFFC2C2C1EC4001D516C /* PokemonDetailModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

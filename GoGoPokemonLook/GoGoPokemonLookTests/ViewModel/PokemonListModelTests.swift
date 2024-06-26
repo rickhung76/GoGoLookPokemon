@@ -142,7 +142,6 @@ struct MockPokemonDataProvider: PokemonListModelDataProvider {
 			let detail = PokemonDetail(
 				id: id,
 				name: "name\(id)",
-				forms: [],
 				species: SpeciesElement(name: "species\(id)", url: "species_url_\(id)"),
 				sprites: Sprites(frontDefault: "frontDefault_url_\(id)"),
 				types: []
