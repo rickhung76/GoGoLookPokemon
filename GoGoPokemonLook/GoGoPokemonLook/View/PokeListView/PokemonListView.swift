@@ -1,5 +1,5 @@
 //
-//  PokeListView.swift
+//  PokemonListView.swift
 //  GoGoPokemonLook
 //
 //  Created by 黃柏叡 on 2024/6/24.
@@ -8,39 +8,42 @@
 import SwiftUI
 import FiredTofu
 
-struct PokeListView: View {
+struct PokemonListView: View {
 	
 	@ObservedObject var model = PokemonListModel(
 		pokemonDataProvider: HttpClient.default
 	)
-
-    var body: some View {
+	
+	var body: some View {
 		List(0 ..< model.pokemons.count, id: \.self) { i in
 			let element = model.pokemons[i]
 			let isLast = i == (model.pokemons.count - 1)
-			cellView(data: element)
-				.onAppear {
-					guard isLast else { return }
-					print("Fetching from \(model.offset)~\(model.offset + model.limit - 1)")
-					model.fetchPokemons(
-						offset: model.offset,
-						limit: model.limit
-					)
-				}
+			NavigationLink(destination: PokemonDetailView(pokemon: element)) {
+				cellView(pokemon: element)
+					.onAppear {
+						guard isLast else { return }
+						print("Fetching from \(model.offset)~\(model.offset + model.limit - 1)")
+						model.fetchPokemons(
+							offset: model.offset,
+							limit: model.limit
+						)
+					}
+			}
 		}
 		.onAppear {
+			guard model.pokemons.isEmpty else { return }
 			model.fetchPokemons(
 				offset: model.offset,
 				limit: model.limit
 			)
 		}
-    }
+	}
 }
 
 struct cellView: View {
 	
 	@ObservedObject var pokemon: Pokemon
-		
+	
 	var body: some View {
 		HStack(alignment: .center, spacing: 20) {
 			Text("\(pokemon.id)\t")
@@ -53,5 +56,5 @@ struct cellView: View {
 }
 
 #Preview {
-    PokeListView()
+	PokemonListView()
 }
