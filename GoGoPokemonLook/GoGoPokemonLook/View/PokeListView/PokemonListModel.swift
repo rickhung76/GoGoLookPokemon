@@ -9,7 +9,6 @@ protocol PokemonListDataProvider {
 
 protocol PokemonDetailDataProvider {
 	func fetchDetail(_ url: String) -> AnyPublisher<PokemonDetail, NSError>
-	func fetchDetail(_ url: String) async throws -> PokemonDetail
 }
 
 class PokemonListModel: ObservableObject {
@@ -18,7 +17,7 @@ class PokemonListModel: ObservableObject {
 		case idle
 		case loading
 		case loaded([Pokemon])
-		case error(Error)
+		case error(NSError)
 	}
 	
 	@Published
@@ -57,7 +56,6 @@ class PokemonListModel: ObservableObject {
 					self.offset += self.limit
 					self.state = .loaded(self.pokemons)
 				case .failure(let error):
-					print("\(#function) ERROR: \(error.localizedDescription)")
 					self.state = .error(error)
 				}
 			} receiveValue: { [weak self] model in

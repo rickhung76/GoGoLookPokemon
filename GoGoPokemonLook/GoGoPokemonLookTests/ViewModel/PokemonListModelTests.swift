@@ -22,7 +22,7 @@ final class PokemonListModelTests: XCTestCase {
 
     func testModelInitializer_shouldInitPropertyWithDefaultValue() throws {
 		// Arrange
-		let dataProvider = MockPokemonListDataProvider()
+		let dataProvider = MockPokemonDataProvider()
 		// Act
 		let model = PokemonListModel(pokemonDataProvider: dataProvider)
 		// Assert
@@ -35,7 +35,7 @@ final class PokemonListModelTests: XCTestCase {
 		// Arrange
 		let exp = XCTestExpectation()
 		exp.expectedFulfillmentCount = 3
-		let dataProvider = MockPokemonListDataProvider()
+		let dataProvider = MockPokemonDataProvider()
 		let model = PokemonListModel(pokemonDataProvider: dataProvider)
 		
 		model.$state
@@ -60,9 +60,61 @@ final class PokemonListModelTests: XCTestCase {
 		model.fetchPokemons(offset: 0, limit: 20)
 		wait(for: [exp], timeout: 5.0)
 	}
+	
+	func testModelFetchPokemonsFailure_shouldReturnErrorState() throws {
+		// Arrange
+		let exp = XCTestExpectation()
+		exp.expectedFulfillmentCount = 3
+		let mockError = NSError(domain: "test_failure_\(#function)", code: -9999)
+		let dataProvider = MockPokemonFailureDataProvider(error: mockError)
+		let model = PokemonListModel(pokemonDataProvider: dataProvider)
+		
+		model.$state
+			.sink { state in
+				// Assert
+				switch state {
+				case .idle:
+					exp.fulfill()
+				case .loading:
+					exp.fulfill()
+				case .loaded(_):
+					XCTFail()
+				case .error(let error):
+					XCTAssertEqual(error, mockError)
+					exp.fulfill()
+				}
+			}.store(in: &cancelable)
+		
+		// Act
+		model.fetchPokemons(offset: 0, limit: 20)
+		wait(for: [exp], timeout: 5.0)
+	}
+	
+	func testModelFetchPokemonDetail_shouldMutatePokemonDetail() throws {
+		// Arrange
+		let exp = XCTestExpectation()
+		let dataProvider = MockPokemonDataProvider()
+		let model = PokemonListModel(pokemonDataProvider: dataProvider)
+		let mockID = 99
+		let mockPokemon = Pokemon(name: "Pokemon_\(#function)", url: "https://test.com/\(mockID)")
+		
+		mockPokemon.$detail
+			.dropFirst()
+			.sink(receiveValue: { detail in
+				// Assert
+				XCTAssertNotNil(detail)
+				XCTAssertEqual(detail?.name, "name\(mockID)")
+				exp.fulfill()
+			}).store(in: &cancelable)
+		
+		// Act
+		model.fetchPokemonDetail(mockPokemon)
+		wait(for: [exp], timeout: 5.0)
+	}
 }
 
-struct MockPokemonListDataProvider: PokemonListDataProvider {
+struct MockPokemonDataProvider: PokemonDataProvider {
+	
 	func fetch(offset: Int, limit: Int) -> AnyPublisher<PokemonList, NSError> {
 		let subject = PassthroughSubject<PokemonList, NSError>()
 		
@@ -74,6 +126,60 @@ struct MockPokemonListDataProvider: PokemonListDataProvider {
 			subject.send(completion: .finished)
 		}
 
+		return subject.eraseToAnyPublisher()
+	}
+	
+	func fetchDetail(_ url: String) -> AnyPublisher<PokemonDetail, NSError> {
+		let subject = PassthroughSubject<PokemonDetail, NSError>()
+		
+		RunLoop.current.perform {
+			guard let idString = url.split(separator: "/").last,
+				  let id = Int(idString)
+			else {
+				subject.send(completion: .failure(NSError()))
+				return
+			}
+			let detail = PokemonDetail(
+				id: id,
+				name: "name\(id)",
+				forms: [],
+				species: Species(name: "species\(id)", url: "species_url_\(id)"),
+				sprites: Sprites(frontDefault: "frontDefault_url_\(id)"),
+				types: []
+			)
+			subject.send(detail)
+			subject.send(completion: .finished)
+		}
+		
+		return subject.eraseToAnyPublisher()
+	}
+}
+
+struct MockPokemonFailureDataProvider: PokemonDataProvider {
+	
+	let error: NSError
+	
+	init(error: NSError) {
+		self.error = error
+	}
+	
+	func fetch(offset: Int, limit: Int) -> AnyPublisher<PokemonList, NSError> {
+		let subject = PassthroughSubject<PokemonList, NSError>()
+		
+		RunLoop.current.perform {
+			subject.send(completion: .failure(self.error))
+		}
+
+		return subject.eraseToAnyPublisher()
+	}
+	
+	func fetchDetail(_ url: String) -> AnyPublisher<PokemonDetail, NSError> {
+		let subject = PassthroughSubject<PokemonDetail, NSError>()
+		
+		RunLoop.current.perform {
+			subject.send(completion: .failure(self.error))
+		}
+		
 		return subject.eraseToAnyPublisher()
 	}
 }
