@@ -9,7 +9,7 @@ import Foundation
 
 struct SpeciesDetail: Decodable {
 	
-	let evolutionChain: EvolutionChain
+	let evolutionChain: EvolutionChainElement
 	let flavorTextEntries: [FlavorTextEntry]
 	let name: String
 
@@ -27,7 +27,7 @@ struct SpeciesDetail: Decodable {
 	}
 }
 
-struct EvolutionChain: Decodable {
+struct EvolutionChainElement: Decodable {
 	let url: String
 }
 

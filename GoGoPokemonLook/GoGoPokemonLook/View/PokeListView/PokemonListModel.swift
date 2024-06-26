@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import FiredTofu
 
-typealias PokemonDataProvider = PokemonListDataProvider & PokemonDetailDataProvider
+typealias PokemonListModelDataProvider = PokemonListDataProvider & PokemonDetailDataProvider
 
 protocol PokemonListDataProvider {
 	func fetch(offset: Int, limit: Int) -> AnyPublisher<PokemonList, NSError>
@@ -26,7 +26,7 @@ class PokemonListModel: ObservableObject {
 		
 	var pokemons: [Pokemon] = []
 	
-	private let pokemonDataProvider: PokemonDataProvider
+	private let pokemonDataProvider: PokemonListModelDataProvider
 	
 	private var cancelable = Set<AnyCancellable>()
 	
@@ -36,7 +36,7 @@ class PokemonListModel: ObservableObject {
 	
 	init(
 		pokemons: [Pokemon] = [],
-		pokemonDataProvider: PokemonDataProvider = HttpClient.default
+		pokemonDataProvider: PokemonListModelDataProvider = HttpClient.default
 	) {
 		self.pokemons = pokemons
 		self.pokemonDataProvider = pokemonDataProvider

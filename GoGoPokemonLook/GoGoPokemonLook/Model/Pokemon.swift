@@ -34,14 +34,6 @@ class Pokemon: ObservableObject, Decodable {
 		self.url = url
 	}
 	
-	func setDetail(_ detail: PokemonDetail?) {
-		self.detail = detail
-	}
-	
-	func getDetail() -> PokemonDetail? {
-		self.detail
-	}
-	
 	enum CodingKeys: String, CodingKey {
 		case name
 		case url
@@ -60,5 +52,11 @@ extension Pokemon: Hashable {
 	}
 }
 
-
+extension Pokemon {
+	
+	convenience init(species: SpeciesElement) {
+		let id = species.url.split(separator: "/").last ?? ""
+		self.init(name: species.name, url: "https://pokeapi.co/api/v2/pokemon/\(id)")
+	}
+}
 
