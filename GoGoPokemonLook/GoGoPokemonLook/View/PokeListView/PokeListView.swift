@@ -39,14 +39,16 @@ struct PokeListView: View {
 
 struct cellView: View {
 	
-	let data: Pokemon
+	@ObservedObject var pokemon: Pokemon
 		
 	var body: some View {
-		HStack(alignment: .center, spacing: 20, content: {
-			Text("\(data.id)")
-			Text(data.name)
-			Text("Type")
-		})
+		HStack(alignment: .center, spacing: 20) {
+			Text("\(pokemon.id)\t")
+			AsyncImage(url: URL(string: pokemon.detail?.sprites.frontDefault ?? ""))
+				.frame(width: 50, height: 50, alignment: .center)
+			Text("\t\(pokemon.name)")
+			Text(pokemon.detail?.types.first?.type.name ?? "")
+		}
 	}
 }
 

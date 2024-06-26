@@ -1,8 +1,15 @@
 import Foundation
 import Combine
 
+typealias PokemonDataProvider = PokemonListDataProvider & PokemonDetailDataProvider
+
 protocol PokemonListDataProvider {
 	func fetch(offset: Int, limit: Int) -> AnyPublisher<PokemonList, NSError>
+}
+
+protocol PokemonDetailDataProvider {
+	func fetchDetail(_ url: String) -> AnyPublisher<PokemonDetail, NSError>
+	func fetchDetail(_ url: String) async throws -> PokemonDetail
 }
 
 class PokemonListModel: ObservableObject {
@@ -19,7 +26,7 @@ class PokemonListModel: ObservableObject {
 		
 	var pokemons: [Pokemon] = []
 	
-	private let pokemonDataProvider: PokemonListDataProvider
+	private let pokemonDataProvider: PokemonDataProvider
 	
 	private var cancelable = Set<AnyCancellable>()
 	
@@ -29,7 +36,7 @@ class PokemonListModel: ObservableObject {
 	
 	init(
 		pokemons: [Pokemon] = [],
-		pokemonDataProvider: PokemonListDataProvider
+		pokemonDataProvider: PokemonDataProvider
 	) {
 		self.pokemons = pokemons
 		self.pokemonDataProvider = pokemonDataProvider
@@ -41,6 +48,7 @@ class PokemonListModel: ObservableObject {
 		
 		pokemonDataProvider
 			.fetch(offset: offset, limit: limit)
+			.receive(on: DispatchQueue.main)
 			.sink { [weak self] completion in
 				guard let self else { return }
 				
@@ -49,12 +57,27 @@ class PokemonListModel: ObservableObject {
 					self.offset += self.limit
 					self.state = .loaded(self.pokemons)
 				case .failure(let error):
+					print("\(#function) ERROR: \(error.localizedDescription)")
 					self.state = .error(error)
 				}
 			} receiveValue: { [weak self] model in
 				guard let self else { return }
+				let pokemons = model.results
+				pokemons.forEach {
+					self.fetchPokemonDetail($0)
+				}
+				self.pokemons.append(contentsOf: pokemons)
+			}.store(in: &cancelable)
+	}
+	
+	func fetchPokemonDetail(_ pokemon: Pokemon) {
+		pokemonDataProvider
+			.fetchDetail(pokemon.url)
+			.receive(on: DispatchQueue.main)
+			.sink { _ in
 				
-				self.pokemons.append(contentsOf: model.results)
+			} receiveValue: { [weak pokemon] detail in
+				pokemon?.detail = detail
 			}.store(in: &cancelable)
 	}
 }
