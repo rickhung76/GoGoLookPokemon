@@ -52,8 +52,9 @@ struct PokemonDetailView: View {
 				
 				HStack {
 					ForEach(model.evolves, id: \.self) { evolve in
-						if evolve.isClickable {
-							let pokemon = Pokemon(species: evolve.chain.species)
+						if evolve.isClickable,
+						   let pokemon = Pokemon(species: evolve.chain.species) {
+							
 							NavigationLink(destination: PokemonDetailView(
 								model: PokemonDetailModel(pokemon: pokemon)
 							)) {

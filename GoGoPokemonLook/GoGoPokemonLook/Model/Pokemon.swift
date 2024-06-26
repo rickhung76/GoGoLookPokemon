@@ -54,8 +54,8 @@ extension Pokemon: Hashable {
 
 extension Pokemon {
 	
-	convenience init(species: SpeciesElement) {
-		let id = species.url.split(separator: "/").last ?? ""
+	convenience init?(species: SpeciesElement) {
+		guard let id = species.url.split(separator: "/").last else { return nil }
 		self.init(name: species.name, url: "https://pokeapi.co/api/v2/pokemon/\(id)")
 	}
 }
