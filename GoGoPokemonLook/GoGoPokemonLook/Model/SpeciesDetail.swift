@@ -8,6 +8,7 @@
 import Foundation
 
 struct SpeciesDetail: Decodable {
+	
 	let evolutionChain: EvolutionChain
 	let flavorTextEntries: [FlavorTextEntry]
 	let name: String
@@ -16,6 +17,13 @@ struct SpeciesDetail: Decodable {
 		case evolutionChain = "evolution_chain"
 		case flavorTextEntries = "flavor_text_entries"
 		case name
+	}
+	
+	func getFlavor() -> String {
+		flavorTextEntries
+			.first(where: { $0.language.name == "en" })?
+			.flavorText
+		?? "N/A"
 	}
 }
 

@@ -18,7 +18,9 @@ struct PokemonListView: View {
 		List(0 ..< model.pokemons.count, id: \.self) { i in
 			let element = model.pokemons[i]
 			let isLast = i == (model.pokemons.count - 1)
-			NavigationLink(destination: PokemonDetailView(pokemon: element)) {
+			NavigationLink(destination: PokemonDetailView(
+					model: PokemonDetailModel(pokemon: element)
+			)) {
 				cellView(pokemon: element)
 					.onAppear {
 						guard isLast else { return }

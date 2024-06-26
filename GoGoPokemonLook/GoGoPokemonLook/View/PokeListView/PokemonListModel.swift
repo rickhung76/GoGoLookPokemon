@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import FiredTofu
 
 typealias PokemonDataProvider = PokemonListDataProvider & PokemonDetailDataProvider
 
@@ -35,7 +36,7 @@ class PokemonListModel: ObservableObject {
 	
 	init(
 		pokemons: [Pokemon] = [],
-		pokemonDataProvider: PokemonDataProvider
+		pokemonDataProvider: PokemonDataProvider = HttpClient.default
 	) {
 		self.pokemons = pokemons
 		self.pokemonDataProvider = pokemonDataProvider

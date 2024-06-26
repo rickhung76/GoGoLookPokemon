@@ -27,6 +27,8 @@ class Pokemon: ObservableObject, Decodable {
 	@Published
 	var detail: PokemonDetail?
 	
+	var species: SpeciesDetail?
+	
 	init(name: String, url: String) {
 		self.name = name
 		self.url = url

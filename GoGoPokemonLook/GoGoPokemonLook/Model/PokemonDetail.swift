@@ -11,8 +11,8 @@ struct PokemonDetail: Decodable, Hashable {
 	
 	let id: Int
 	let name: String
-	let forms: [Species]
-	let species: Species
+	let forms: [SpeciesElement]
+	let species: SpeciesElement
 	let sprites: Sprites
 	let types: [TypeElement]
 	
@@ -35,12 +35,17 @@ struct Sprites: Decodable, Hashable {
 	}
 }
 
-struct TypeElement: Decodable {
+struct TypeElement: Decodable, Hashable {
 	let slot: Int
-	let type: Species
+	let type: PokemonType
 }
 
-struct Species: Decodable {
+struct SpeciesElement: Decodable, Hashable {
+	let name: String
+	let url: String
+}
+
+struct PokemonType: Decodable, Hashable {
 	let name: String
 	let url: String
 }
