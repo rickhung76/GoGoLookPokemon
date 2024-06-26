@@ -113,7 +113,7 @@ final class PokemonListModelTests: XCTestCase {
 	}
 }
 
-struct MockPokemonDataProvider: PokemonDataProvider {
+struct MockPokemonDataProvider: PokemonListModelDataProvider {
 	
 	func fetch(offset: Int, limit: Int) -> AnyPublisher<PokemonList, NSError> {
 		let subject = PassthroughSubject<PokemonList, NSError>()
@@ -143,7 +143,7 @@ struct MockPokemonDataProvider: PokemonDataProvider {
 				id: id,
 				name: "name\(id)",
 				forms: [],
-				species: Species(name: "species\(id)", url: "species_url_\(id)"),
+				species: SpeciesElement(name: "species\(id)", url: "species_url_\(id)"),
 				sprites: Sprites(frontDefault: "frontDefault_url_\(id)"),
 				types: []
 			)
@@ -155,7 +155,7 @@ struct MockPokemonDataProvider: PokemonDataProvider {
 	}
 }
 
-struct MockPokemonFailureDataProvider: PokemonDataProvider {
+struct MockPokemonFailureDataProvider: PokemonListModelDataProvider {
 	
 	let error: NSError
 	
