@@ -10,70 +10,45 @@ import FiredTofu
 
 struct PokemonListView: View {
 	
-	@ObservedObject var model = PokemonListModel(
-		pokemonDataProvider: HttpClient.default
-	)
+	@ObservedObject var model = PokemonListModel()
 	
 	var body: some View {
-		List(0 ..< model.pokemons.count, id: \.self) { i in
-			let element = model.pokemons[i]
-			let isLast = i == (model.pokemons.count - 1)
-			NavigationLink(destination: PokemonDetailView(
-					model: PokemonDetailModel(pokemon: element)
-			)) {
-				cellView(pokemon: element)
-					.onAppear {
-						guard isLast else { return }
-						print("Fetching from \(model.offset)~\(model.offset + model.limit - 1)")
-						model.fetchPokemons(
-							offset: model.offset,
-							limit: model.limit
-						)
-					}
+		List(0 ..< model.listElements.count, id: \.self) { i in
+			let element = model.listElements[i]
+			let isLast = i == (model.listElements.count - 1)
+			PokemonListCell(pokemon: element) { pokemon in
+				model.togglePokemonFavorite(pokemon)
 			}
+			.onAppear {
+				guard isLast, !model.isFavorite else { return }
+				model.fetchPokemons(
+					offset: model.offset,
+					limit: model.limit
+				)
+			}
+			
 		}
+		.navigationTitle(model.isFavorite ? "Favorite List" : "Pokemon List")
 		.onAppear {
-			guard model.pokemons.isEmpty else { return }
+			guard !model.isFavorite,
+				  model.listElements.isEmpty else { return }
 			model.fetchPokemons(
 				offset: model.offset,
 				limit: model.limit
 			)
 		}
-	}
-}
-
-struct cellView: View {
-	
-	@ObservedObject var pokemon: PokemonViewModel
-	
-	var body: some View {
-		HStack(alignment: .center, spacing: 20) {
-			Text("\(pokemon.id)\t")
-			
-			CachedAsyncImage(
-				url: URL(string: pokemon.detail?.sprites.frontDefault ?? "")
-			) { phase in
-				switch phase {
-				case .empty:
-					ProgressView()
-				case .success(let image):
-					image
-				case .failure(_):
-					Text("🚫")
-				@unknown default:
-					fatalError()
-				}
-			}.frame(width: 50, height: 50, alignment: .center)
-			
-			VStack(alignment: .leading) {
-				Text("\(pokemon.name)")
-					.font(.title3)
-				Text(pokemon.typesString)
-					.foregroundStyle(.gray)
+		.toolbar {
+			Button {
+				model.toggleDataSource()
+			} label: {
+				let name = model.isFavorite ? "suit.heart.fill" : "suit.heart"
+				Image(systemName: name)
 			}
 		}
 	}
 }
+
+
 
 #Preview {
 	PokemonListView()

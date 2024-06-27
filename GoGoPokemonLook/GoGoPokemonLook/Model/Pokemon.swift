@@ -19,6 +19,9 @@ class PokemonViewModel: ObservableObject {
 	
 	let url: String
 	
+	@Published
+	var isFavorite: Bool
+	
 	var id: String {
 		guard let idSubString = url.split(separator: "/").last else { return "" }
 		return String(idSubString)
@@ -33,11 +36,17 @@ class PokemonViewModel: ObservableObject {
 	init(element: PokemonElement) {
 		self.name = element.name
 		self.url = element.url
+		self.isFavorite = false
 	}
 	
-	init(name: String, url: String) {
+	init(name: String, url: String, isFavorite: Bool) {
 		self.name = name
 		self.url = url
+		self.isFavorite = isFavorite
+	}
+	
+	func getElement() -> PokemonElement {
+		PokemonElement(name: name, url: url)
 	}
 }
 
@@ -45,7 +54,11 @@ extension PokemonViewModel {
 	
 	convenience init?(species: SpeciesElement) {
 		guard let id = species.url.split(separator: "/").last else { return nil }
-		self.init(name: species.name, url: "https://pokeapi.co/api/v2/pokemon/\(id)")
+		self.init(
+			name: species.name,
+			url: "https://pokeapi.co/api/v2/pokemon/\(id)",
+			isFavorite: false
+		)
 	}
 }
 
@@ -61,7 +74,7 @@ extension PokemonViewModel: Hashable {
 	}
 }
 
-struct PokemonElement: Decodable {
+struct PokemonElement: Codable, Equatable {
 	let name: String
 	let url: String
 }
@@ -73,3 +86,15 @@ struct PokemonList: Decodable {
 	let results: [PokemonElement]
 }
 
+struct FavoritePokemonList: Codable {
+	
+	var pokemons: [PokemonElement]
+	
+	mutating func add(_ pokemon: PokemonElement) {
+		self.pokemons.append(pokemon)
+	}
+	
+	mutating func remove(_ pokemon: PokemonElement) {
+		self.pokemons.removeAll(where: { $0 == pokemon })
+	}
+}

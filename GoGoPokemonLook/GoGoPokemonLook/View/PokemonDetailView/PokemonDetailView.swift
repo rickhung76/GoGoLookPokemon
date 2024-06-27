@@ -88,7 +88,8 @@ struct PokemonDetailView: View {
 	PokemonDetailView(model: PokemonDetailModel(
 		pokemon: PokemonViewModel(
 			name: "種子種子",
-			url: "https://pokeapi.co/api/v2/pokemon/1"
+			url: "https://pokeapi.co/api/v2/pokemon/1",
+			isFavorite: true
 		))
 	)
 }
