@@ -16,12 +16,12 @@ struct PokemonListCell: View {
 	var body: some View {
 		HStack(alignment: .center, spacing: 15) {
 			
-			Text("\(pokemon.id)\t")
-				.onTapGesture {
-					print("########")
-				}
+			Text("\(pokemon.id)")
+				.frame(width: 40, height: 50, alignment: .trailing)
+
 			if let url = URL(string: pokemon.detail?.sprites.frontDefault ?? "") {
 				CachedAsyncImage(url: url)
+					.id(url.absoluteString)
 					.frame(width: 50, height: 50, alignment: .center)
 			} else {
 				ProgressView()

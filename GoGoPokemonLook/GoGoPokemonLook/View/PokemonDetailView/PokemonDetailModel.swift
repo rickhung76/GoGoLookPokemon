@@ -42,7 +42,7 @@ class PokemonDetailModel: ObservableObject {
 	
 	init(
 		pokemon: PokemonViewModel,
-		dataProvider: PokemonDetailModelDataProvider = HttpClient.default
+		dataProvider: PokemonDetailModelDataProvider = HttpClient.cacheClient
 	) {
 		self.pokemon = pokemon
 		self.dataProvider = dataProvider

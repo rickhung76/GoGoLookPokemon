@@ -51,7 +51,7 @@ class PokemonDetailRequest: Request {
 extension HttpClient: PokemonDetailDataProvider {
 	func fetchDetail(_ url: String) -> AnyPublisher<PokemonDetail, NSError> {
 		let request = PokemonDetailRequest(url: url)
-		return HttpClient.default
+		return HttpClient.cacheClient
 			.send(request)
 			.mapError({$0.asError()})
 			.eraseToAnyPublisher()
@@ -59,6 +59,6 @@ extension HttpClient: PokemonDetailDataProvider {
 	
 	func fetchDetail(_ url: String) async throws -> PokemonDetail {
 		let request = PokemonDetailRequest(url: url)
-		return try await HttpClient.default.send(request)
+		return try await HttpClient.cacheClient.send(request)
 	}
 }

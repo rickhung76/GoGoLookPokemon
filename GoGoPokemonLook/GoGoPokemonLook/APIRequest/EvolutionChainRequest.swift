@@ -51,7 +51,7 @@ class EvolutionChainRequest: Request {
 extension HttpClient: PokemonEvolutionChainDataProvider {
 	func fetchEvolutionChain(_ url: String) -> AnyPublisher<EvolutionChain, NSError> {
 		let request = EvolutionChainRequest(url: url)
-		return HttpClient.default
+		return HttpClient.cacheClient
 			.send(request)
 			.mapError({$0.asError()})
 			.eraseToAnyPublisher()

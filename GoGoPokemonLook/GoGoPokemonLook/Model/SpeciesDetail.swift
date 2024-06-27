@@ -23,6 +23,7 @@ struct SpeciesDetail: Decodable {
 		flavorTextEntries
 			.first(where: { $0.language.name == "en" })?
 			.flavorText
+			.filter { !"\n".contains($0) }
 		?? "N/A"
 	}
 }

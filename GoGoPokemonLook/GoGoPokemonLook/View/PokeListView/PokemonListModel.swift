@@ -52,7 +52,7 @@ class PokemonListModel: ObservableObject {
 	var limit = 20
 	
 	init(
-		pokemonDataProvider: PokemonListModelDataProvider = HttpClient.default,
+		pokemonDataProvider: PokemonListModelDataProvider = HttpClient.cacheClient,
 		favoriteDataProvider: FavoriteDataProvider = UserDefaultDataPool.shared
 	) {
 		self.pokemonDataProvider = pokemonDataProvider
@@ -158,8 +158,8 @@ class PokemonListModel: ObservableObject {
 		} else {
 			favoriteDataProvider.remove(pokemon.getElement())
 		}
-		fetchFavorites()
 		
+		fetchFavorites()
 		pokemons.first(where: {$0 == pokemon})?.isFavorite = pokemon.isFavorite
 	}
 	

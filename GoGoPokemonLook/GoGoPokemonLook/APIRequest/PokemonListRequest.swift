@@ -61,7 +61,7 @@ extension HttpClient: PokemonListDataProvider {
 		limit: Int
 	) -> AnyPublisher<PokemonList, NSError> {
 		let request = PokemonListRequest(limit: limit, offset: offset)
-		return HttpClient.default
+		return HttpClient.cacheClient
 			.send(request)
 			.mapError({$0.asError()})
 			.eraseToAnyPublisher()

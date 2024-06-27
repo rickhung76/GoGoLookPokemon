@@ -45,6 +45,7 @@ struct PokemonDetailView: View {
 				Text(model.flavor)
 					.frame(maxWidth: .infinity, alignment: .center)
 					.fixedSize(horizontal: false, vertical: true)
+					.padding()
 				
 				Text("Evolution")
 					.frame(maxWidth: .infinity, alignment: .leading)

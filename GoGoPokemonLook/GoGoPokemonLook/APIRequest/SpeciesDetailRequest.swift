@@ -51,7 +51,7 @@ class SpeciesDetailRequest: Request {
 extension HttpClient: PokemonSpeciesDataProvider {
 	func fetchSpecies(_ url: String) -> AnyPublisher<SpeciesDetail, NSError> {
 		let request = SpeciesDetailRequest(url: url)
-		return HttpClient.default
+		return HttpClient.cacheClient
 			.send(request)
 			.mapError({$0.asError()})
 			.eraseToAnyPublisher()

@@ -10,6 +10,7 @@ import Foundation
 extension UserDefaults {
 	enum Key: String {
 		case favoritePokemons
+		case apiDataCache
 	}
 }
 
