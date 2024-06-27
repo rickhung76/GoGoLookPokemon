@@ -49,10 +49,28 @@ struct cellView: View {
 	var body: some View {
 		HStack(alignment: .center, spacing: 20) {
 			Text("\(pokemon.id)\t")
-			AsyncImage(url: URL(string: pokemon.detail?.sprites.frontDefault ?? ""))
-				.frame(width: 50, height: 50, alignment: .center)
-			Text("\t\(pokemon.name)")
-			Text(pokemon.detail?.types.first?.type.name ?? "")
+			
+			CachedAsyncImage(
+				url: URL(string: pokemon.detail?.sprites.frontDefault ?? "")
+			) { phase in
+				switch phase {
+				case .empty:
+					ProgressView()
+				case .success(let image):
+					image
+				case .failure(_):
+					Text("🚫")
+				@unknown default:
+					fatalError()
+				}
+			}.frame(width: 50, height: 50, alignment: .center)
+			
+			VStack(alignment: .leading) {
+				Text("\(pokemon.name)")
+					.font(.title3)
+				Text(pokemon.typesString)
+					.foregroundStyle(.gray)
+			}
 		}
 	}
 }

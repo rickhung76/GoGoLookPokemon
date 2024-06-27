@@ -23,6 +23,12 @@ class Pokemon: ObservableObject, Decodable {
 		guard let idSubString = url.split(separator: "/").last else { return "" }
 		return String(idSubString)
 	}
+	var typesString: String {
+		guard let detail = detail else { return "" }
+		var types = detail.types
+		let first = types.removeFirst()
+		return types.reduce(first.type.name, { return "\($0), \($1.type.name)" })
+	}
 	
 	@Published
 	var detail: PokemonDetail?
