@@ -61,7 +61,7 @@ struct PokemonDetailView: View {
 				HStack {
 					ForEach(model.evolves, id: \.self) { evolve in
 						if evolve.isClickable,
-						   let pokemon = Pokemon(species: evolve.chain.species) {
+						   let pokemon = PokemonViewModel(species: evolve.chain.species) {
 							
 							NavigationLink(destination: PokemonDetailView(
 								model: PokemonDetailModel(pokemon: pokemon)
@@ -86,7 +86,7 @@ struct PokemonDetailView: View {
 
 #Preview {
 	PokemonDetailView(model: PokemonDetailModel(
-		pokemon: Pokemon(
+		pokemon: PokemonViewModel(
 			name: "種子種子",
 			url: "https://pokeapi.co/api/v2/pokemon/1"
 		))

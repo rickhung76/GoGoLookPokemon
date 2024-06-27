@@ -96,7 +96,8 @@ final class PokemonListModelTests: XCTestCase {
 		let dataProvider = MockPokemonDataProvider()
 		let model = PokemonListModel(pokemonDataProvider: dataProvider)
 		let mockID = 99
-		let mockPokemon = Pokemon(name: "Pokemon_\(#function)", url: "https://test.com/\(mockID)")
+		let mockElement = PokemonElement(name: "Pokemon_\(#function)", url: "https://test.com/\(mockID)")
+		let mockPokemon = PokemonViewModel(element: mockElement)
 		
 		mockPokemon.$detail
 			.dropFirst()
@@ -120,7 +121,7 @@ struct MockPokemonDataProvider: PokemonListModelDataProvider {
 		
 		RunLoop.current.perform {
 			let pokemons = (offset ..< offset + limit)
-				.map({ Pokemon(name: "name\($0)", url: "https://test.com/\($0)") })
+				.map({ PokemonElement(name: "name\($0)", url: "https://test.com/\($0)") })
 			let data: PokemonList = PokemonList(count: 0, next: "", previous: "", results: pokemons)
 			subject.send(data)
 			subject.send(completion: .finished)

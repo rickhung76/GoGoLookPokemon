@@ -23,7 +23,8 @@ final class PokemonDetailModelTests: XCTestCase {
 	func testModelInitializer_shouldInitPropertyWithDefaultValue() {
 		// Arrange
 		let dataProvider = MockPokemonDetailModelDataProvider()
-		let pokemon = Pokemon(name: "bulbasaur", url: "https://test.pokemon/1")
+		let element = PokemonElement(name: "bulbasaur", url: "https://test.pokemon/1")
+		let pokemon = PokemonViewModel(element: element)
 		let pokemonDetail = PokemonDetail(
 			id: 1,
 			name: "name1",
@@ -55,7 +56,8 @@ final class PokemonDetailModelTests: XCTestCase {
 	func test_fetchPokemonDetail() {
 		// Arrange
 		let dataProvider = MockPokemonDetailModelDataProvider()
-		let pokemon = Pokemon(name: "bulbasaur", url: "https://test.pokemon/1")
+		let element = PokemonElement(name: "bulbasaur", url: "https://test.pokemon/1")
+		let pokemon = PokemonViewModel(element: element)
 		let model = PokemonDetailModel(pokemon: pokemon, dataProvider: dataProvider)
 		let pokemonDetail = PokemonDetail(
 			id: 1,
@@ -95,7 +97,8 @@ final class PokemonDetailModelTests: XCTestCase {
 			sprites: Sprites(frontDefault: "https://test.frontDefault/1"),
 			types: []
 		)
-		let pokemon = Pokemon(name: name, url: "https://test.pokemon/1")
+		let element = PokemonElement(name: name, url: "https://test.pokemon/1")
+		let pokemon = PokemonViewModel(element: element)
 		pokemon.detail = pokemonDetail
 		let model = PokemonDetailModel(pokemon: pokemon, dataProvider: dataProvider)
 		
@@ -144,7 +147,8 @@ final class PokemonDetailModelTests: XCTestCase {
 			flavorTextEntries: [],
 			name: name
 		)
-		let pokemon = Pokemon(name: name, url: "https://test.pokemon/1")
+		let element = PokemonElement(name: name, url: "https://test.pokemon/1")
+		let pokemon = PokemonViewModel(element: element)
 		pokemon.species = species
 		let model = PokemonDetailModel(pokemon: pokemon, dataProvider: dataProvider)
 		let evolutionChain = EvolutionChain(

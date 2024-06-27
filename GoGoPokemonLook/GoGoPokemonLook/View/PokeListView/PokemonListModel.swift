@@ -17,14 +17,14 @@ class PokemonListModel: ObservableObject {
 	enum State {
 		case idle
 		case loading
-		case loaded([Pokemon])
+		case loaded([PokemonViewModel])
 		case error(NSError)
 	}
 	
 	@Published
 	var state: State = .idle
 		
-	var pokemons: [Pokemon] = []
+	var pokemons: [PokemonViewModel] = []
 	
 	private let pokemonDataProvider: PokemonListModelDataProvider
 	
@@ -35,7 +35,7 @@ class PokemonListModel: ObservableObject {
 	var limit = 20
 	
 	init(
-		pokemons: [Pokemon] = [],
+		pokemons: [PokemonViewModel] = [],
 		pokemonDataProvider: PokemonListModelDataProvider = HttpClient.default
 	) {
 		self.pokemons = pokemons
@@ -61,7 +61,7 @@ class PokemonListModel: ObservableObject {
 				}
 			} receiveValue: { [weak self] model in
 				guard let self else { return }
-				let pokemons = model.results
+				let pokemons = model.results.map{ PokemonViewModel(element: $0) }
 				pokemons.forEach {
 					self.fetchPokemonDetail($0)
 				}
@@ -69,7 +69,7 @@ class PokemonListModel: ObservableObject {
 			}.store(in: &cancelable)
 	}
 	
-	func fetchPokemonDetail(_ pokemon: Pokemon) {
+	func fetchPokemonDetail(_ pokemon: PokemonViewModel) {
 		pokemonDataProvider
 			.fetchDetail(pokemon.url)
 			.receive(on: DispatchQueue.main)

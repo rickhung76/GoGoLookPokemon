@@ -44,7 +44,7 @@ struct PokemonListView: View {
 
 struct cellView: View {
 	
-	@ObservedObject var pokemon: Pokemon
+	@ObservedObject var pokemon: PokemonViewModel
 	
 	var body: some View {
 		HStack(alignment: .center, spacing: 20) {

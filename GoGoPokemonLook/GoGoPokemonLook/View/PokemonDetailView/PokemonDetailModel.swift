@@ -28,7 +28,7 @@ class PokemonDetailModel: ObservableObject {
 		let isClickable: Bool
 	}
 	
-	let pokemon: Pokemon
+	let pokemon: PokemonViewModel
 	
 	@Published
 	var flavor: String = ""
@@ -41,7 +41,7 @@ class PokemonDetailModel: ObservableObject {
 	private let dataProvider: PokemonDetailModelDataProvider
 	
 	init(
-		pokemon: Pokemon,
+		pokemon: PokemonViewModel,
 		dataProvider: PokemonDetailModelDataProvider = HttpClient.default
 	) {
 		self.pokemon = pokemon
@@ -62,7 +62,7 @@ class PokemonDetailModel: ObservableObject {
 				case .finished:
 					self.fetchPokemonSpecies()
 				case .failure(let error):
-					print(error)
+					print(error.localizedDescription)
 				}
 			} receiveValue: { [weak self] detail in
 				self?.pokemon.detail = detail

@@ -8,17 +8,17 @@
 import Foundation
 import Combine
 
-struct PokemonList: Decodable {
-	let count: Int
-	let next: String
-	let previous: String?
-	let results: [Pokemon]
-}
-
-class Pokemon: ObservableObject, Decodable {
-
+class PokemonViewModel: ObservableObject {
+		
+	@Published
+	var detail: PokemonDetail?
+	
+	var species: SpeciesDetail?
+	
 	let name: String
+	
 	let url: String
+	
 	var id: String {
 		guard let idSubString = url.split(separator: "/").last else { return "" }
 		return String(idSubString)
@@ -30,39 +30,46 @@ class Pokemon: ObservableObject, Decodable {
 		return types.reduce(first.type.name, { return "\($0), \($1.type.name)" })
 	}
 	
-	@Published
-	var detail: PokemonDetail?
-	
-	var species: SpeciesDetail?
+	init(element: PokemonElement) {
+		self.name = element.name
+		self.url = element.url
+	}
 	
 	init(name: String, url: String) {
 		self.name = name
 		self.url = url
 	}
+}
+
+extension PokemonViewModel {
 	
-	enum CodingKeys: String, CodingKey {
-		case name
-		case url
+	convenience init?(species: SpeciesElement) {
+		guard let id = species.url.split(separator: "/").last else { return nil }
+		self.init(name: species.name, url: "https://pokeapi.co/api/v2/pokemon/\(id)")
 	}
 }
 
-extension Pokemon: Hashable {
+extension PokemonViewModel: Hashable {
 	
 	nonisolated func hash(into hasher: inout Hasher) {
 		hasher.combine(name)
 		hasher.combine(url)
 	}
 	
-	static func == (lhs: Pokemon, rhs: Pokemon) -> Bool {
+	static func == (lhs: PokemonViewModel, rhs: PokemonViewModel) -> Bool {
 		lhs.name == rhs.name && lhs.url == rhs.url
 	}
 }
 
-extension Pokemon {
-	
-	convenience init?(species: SpeciesElement) {
-		guard let id = species.url.split(separator: "/").last else { return nil }
-		self.init(name: species.name, url: "https://pokeapi.co/api/v2/pokemon/\(id)")
-	}
+struct PokemonElement: Decodable {
+	let name: String
+	let url: String
+}
+
+struct PokemonList: Decodable {
+	let count: Int
+	let next: String
+	let previous: String?
+	let results: [PokemonElement]
 }
 
