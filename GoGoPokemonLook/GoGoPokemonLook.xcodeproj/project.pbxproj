@@ -12,6 +12,7 @@
 		494D1B922C2D833200E85E2B /* UserDefault+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494D1B912C2D833200E85E2B /* UserDefault+Extension.swift */; };
 		494D1B942C2D83EA00E85E2B /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494D1B932C2D83EA00E85E2B /* Optional+Extension.swift */; };
 		494D1B962C2D91D500E85E2B /* PokemonListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494D1B952C2D91D500E85E2B /* PokemonListCell.swift */; };
+		494D1B992C2DB1BF00E85E2B /* UserDefaultCodableObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494D1B982C2DB1BF00E85E2B /* UserDefaultCodableObjectTests.swift */; };
 		496AFFA92C29B05C001D516C /* GoGoPokemonLookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFA82C29B05C001D516C /* GoGoPokemonLookApp.swift */; };
 		496AFFAB2C29B05C001D516C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496AFFAA2C29B05C001D516C /* ContentView.swift */; };
 		496AFFAD2C29B05D001D516C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 496AFFAC2C29B05D001D516C /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		494D1B912C2D833200E85E2B /* UserDefault+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extension.swift"; sourceTree = "<group>"; };
 		494D1B932C2D83EA00E85E2B /* Optional+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
 		494D1B952C2D91D500E85E2B /* PokemonListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListCell.swift; sourceTree = "<group>"; };
+		494D1B982C2DB1BF00E85E2B /* UserDefaultCodableObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultCodableObjectTests.swift; sourceTree = "<group>"; };
 		496AFFA52C29B05C001D516C /* GoGoPokemonLook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoGoPokemonLook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		496AFFA82C29B05C001D516C /* GoGoPokemonLookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoGoPokemonLookApp.swift; sourceTree = "<group>"; };
 		496AFFAA2C29B05C001D516C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 			path = PropertyWrapper;
 			sourceTree = "<group>";
 		};
+		494D1B972C2DB1AA00E85E2B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				494D1B982C2DB1BF00E85E2B /* UserDefaultCodableObjectTests.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		496AFF9C2C29B05C001D516C = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				496AFFE42C2ACAFC001D516C /* ViewModel */,
+				494D1B972C2DB1AA00E85E2B /* Helper */,
 				496AFFB92C29B05D001D516C /* GoGoPokemonLookTests.swift */,
 			);
 			path = GoGoPokemonLookTests;
@@ -438,6 +449,7 @@
 			files = (
 				496AFFBA2C29B05D001D516C /* GoGoPokemonLookTests.swift in Sources */,
 				496AFFE62C2ACB1E001D516C /* PokemonListModelTests.swift in Sources */,
+				494D1B992C2DB1BF00E85E2B /* UserDefaultCodableObjectTests.swift in Sources */,
 				496AFFFC2C2C1EC4001D516C /* PokemonDetailModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

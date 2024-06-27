@@ -135,13 +135,6 @@ final class PokemonDetailModelTests: XCTestCase {
 		// Arrange
 		let dataProvider = MockPokemonDetailModelDataProvider()
 		let name = "bulbasaur"
-//		let pokemonDetail = PokemonDetail(
-//			id: 1,
-//			name: name,
-//			species: SpeciesElement(name: "name1", url: "https://test.species/1"),
-//			sprites: Sprites(frontDefault: "https://test.frontDefault/1"),
-//			types: []
-//		)
 		let species = SpeciesDetail(
 			evolutionChain: EvolutionChainElement(url: "EvolutionChainElementURL"),
 			flavorTextEntries: [],

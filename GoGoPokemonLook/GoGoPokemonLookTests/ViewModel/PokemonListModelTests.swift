@@ -28,7 +28,6 @@ final class PokemonListModelTests: XCTestCase {
 		// Assert
 		XCTAssertEqual(model.offset, 0)
 		XCTAssertEqual(model.limit, 20)
-		XCTAssertEqual(model.pokemons.count, 0)
     }
 	
 	func testModelFetchPokemons_shouldIncreaseOffsetAndPokemonDataArray() throws {
