@@ -14,12 +14,20 @@ struct PokemonDetailView: View {
 	var body: some View {
 		ScrollView {
 			VStack {
-				AsyncImage(url: URL(
+				CachedAsyncImage(url: URL(
 					string: model.pokemon.detail?.sprites.frontDefault ?? ""
-				)) {
-					$0.image?.resizable().scaledToFill()
-				}
-				.frame(width: 250, height: 250, alignment: .center)
+				)) { phase in
+					switch phase {
+				 case .empty:
+					 ProgressView()
+				 case .success(let image):
+					 image.resizable().scaledToFill()
+				 case .failure(_):
+					 Text("🚫")
+				 @unknown default:
+					 fatalError()
+				 }
+			 }.frame(width: 250, height: 250, alignment: .center)
 				
 				Text("Type")
 					.frame(maxWidth: .infinity, alignment: .leading)
