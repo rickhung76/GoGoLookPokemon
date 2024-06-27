@@ -20,21 +20,13 @@ struct PokemonListCell: View {
 				.onTapGesture {
 					print("########")
 				}
-			
-			CachedAsyncImage(
-				url: URL(string: pokemon.detail?.sprites.frontDefault ?? "")
-			) { phase in
-				switch phase {
-				case .empty:
-					ProgressView()
-				case .success(let image):
-					image
-				case .failure(_):
-					Text("🚫")
-				@unknown default:
-					fatalError()
-				}
-			}.frame(width: 50, height: 50, alignment: .center)
+			if let url = URL(string: pokemon.detail?.sprites.frontDefault ?? "") {
+				CachedAsyncImage(url: url)
+					.frame(width: 50, height: 50, alignment: .center)
+			} else {
+				ProgressView()
+					.frame(width: 50, height: 50, alignment: .center)
+			}
 			
 			VStack(alignment: .leading) {
 				Text("\(pokemon.name)")
