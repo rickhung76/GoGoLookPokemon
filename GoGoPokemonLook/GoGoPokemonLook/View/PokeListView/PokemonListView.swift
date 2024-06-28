@@ -16,8 +16,15 @@ struct PokemonListView: View {
 		List(0 ..< model.listElements.count, id: \.self) { i in
 			let element = model.listElements[i]
 			let isLast = i == (model.listElements.count - 1)
-			PokemonListCell(pokemon: element) { pokemon in
-				model.togglePokemonFavorite(pokemon)
+			PokemonListCell(
+				pokemon: element,
+				onFavoriteButtonTapped: model.togglePokemonFavorite
+			)
+			.background {
+				NavigationLink(destination:PokemonDetailView(model: PokemonDetailModel(
+					pokemon: element,
+					delegate: model
+				))) { EmptyView() }
 			}
 			.onAppear {
 				guard isLast, !model.isFavorite else { return }

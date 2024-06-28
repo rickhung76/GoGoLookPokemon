@@ -78,17 +78,12 @@ class PokemonListModel: ObservableObject {
 	}
 	
 	func fetchFavorites() {
-		state = .loading
 		
 		favoriteDataProvider
 			.fetch()
 			.receive(on: DispatchQueue.main)
-			.sink { [weak self] completion in
-				guard let self,
-					  completion == .finished
-				else { return }
+			.sink { _ in
 				
-				self.state = .loaded(self.favorites)
 			} receiveValue: { [weak self] model in
 				guard let self else { return }
 				let pokemons = model.pokemons.map{
@@ -160,7 +155,7 @@ class PokemonListModel: ObservableObject {
 		}
 		
 		fetchFavorites()
-		pokemons.first(where: {$0 == pokemon})?.isFavorite = pokemon.isFavorite
+		pokemons.first(where: {$0.id == pokemon.id})?.isFavorite = pokemon.isFavorite
 	}
 	
 	func isFavorite(_ pokemon: PokemonElement) -> Bool {
@@ -185,3 +180,5 @@ extension UserDefaultDataPool: FavoriteDataProvider {
 		favoritePokemons.pokemons.contains(pokemon)
 	}
 }
+
+extension PokemonListModel: PokemonDetailModelDelegate {}

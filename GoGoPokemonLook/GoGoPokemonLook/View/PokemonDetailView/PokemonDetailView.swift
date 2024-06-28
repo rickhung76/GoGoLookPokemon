@@ -14,13 +14,25 @@ struct PokemonDetailView: View {
 	var body: some View {
 		ScrollView {
 			VStack {
-				if let url = URL(string: model.pokemon.detail?.sprites.frontDefault ?? "") {
-					CachedAsyncImage(url: url)
-						.frame(width: 250, height: 250, alignment: .center)
-				} else {
-					ProgressView()
-						.scaleEffect(2)
-						.frame(width: 250, height: 250, alignment: .center)
+				ZStack {
+					if let url = URL(string: model.pokemon.detail?.sprites.frontDefault ?? "") {
+						CachedAsyncImage(url: url)
+							.frame(width: 200, height: 200, alignment: .center)
+					} else {
+						ProgressView()
+							.scaleEffect(2)
+							.frame(width: 200, height: 200, alignment: .center)
+					}
+					
+					Button {
+						model.togglePokemonFavorite()
+					} label: {
+						let imageName = model.isFavorite ? "suit.heart.fill" : "suit.heart"
+						Image(systemName: imageName)
+							.foregroundStyle(.red)
+							.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+							.padding(30)
+					}
 				}
 				
 				Text("Type")
@@ -59,7 +71,10 @@ struct PokemonDetailView: View {
 						   let pokemon = PokemonViewModel(species: evolve.chain.species) {
 							
 							NavigationLink(destination: PokemonDetailView(
-								model: PokemonDetailModel(pokemon: pokemon)
+								model: PokemonDetailModel(
+									pokemon: pokemon,
+									delegate: model.delegate
+								)
 							)) {
 								Text(evolve.chain.species.name)
 									.padding()
@@ -85,6 +100,8 @@ struct PokemonDetailView: View {
 			name: "種子種子",
 			url: "https://pokeapi.co/api/v2/pokemon/1",
 			isFavorite: true
-		))
+		),
+		delegate: nil
+	)
 	)
 }

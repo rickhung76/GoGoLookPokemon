@@ -21,6 +21,10 @@ protocol PokemonEvolutionChainDataProvider {
 	func fetchEvolutionChain(_ url: String) -> AnyPublisher<EvolutionChain, NSError>
 }
 
+protocol PokemonDetailModelDelegate: AnyObject {
+	func togglePokemonFavorite(_ pokemon: PokemonViewModel)
+}
+
 class PokemonDetailModel: ObservableObject {
 	
 	struct EvolutionChainViewModel: Hashable {
@@ -29,6 +33,11 @@ class PokemonDetailModel: ObservableObject {
 	}
 	
 	let pokemon: PokemonViewModel
+	
+	weak var delegate: PokemonDetailModelDelegate?
+	
+	@Published
+	var isFavorite: Bool
 	
 	@Published
 	var flavor: String = ""
@@ -42,14 +51,21 @@ class PokemonDetailModel: ObservableObject {
 	
 	init(
 		pokemon: PokemonViewModel,
+		delegate: PokemonDetailModelDelegate?,
 		dataProvider: PokemonDetailModelDataProvider = HttpClient.cacheClient
 	) {
 		self.pokemon = pokemon
+		self.isFavorite = pokemon.isFavorite
 		self.dataProvider = dataProvider
+		self.delegate = delegate
 		
 		if self.pokemon.detail == nil {
 			fetchPokemonDetail()
 		}
+		
+		pokemon.$isFavorite.sink { [weak self] in
+			self?.isFavorite = $0
+		}.store(in: &cancelable)
 	}
 	
 	func fetchPokemonDetail() {
@@ -104,5 +120,9 @@ class PokemonDetailModel: ObservableObject {
 						)
 					}
 			}.store(in: &cancelable)
+	}
+	
+	func togglePokemonFavorite() {
+		delegate?.togglePokemonFavorite(pokemon)
 	}
 }

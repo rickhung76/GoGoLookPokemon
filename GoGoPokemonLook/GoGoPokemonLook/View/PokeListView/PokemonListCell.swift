@@ -44,11 +44,6 @@ struct PokemonListCell: View {
 					onFavoriteButtonTapped(pokemon)
 				}
 		}
-		.background {
-			NavigationLink(destination: PokemonDetailView(
-				model: PokemonDetailModel(pokemon: pokemon)
-			)) { EmptyView() }
-		}
 	}
 }
 
