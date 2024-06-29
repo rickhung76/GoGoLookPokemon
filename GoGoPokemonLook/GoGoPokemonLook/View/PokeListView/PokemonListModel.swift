@@ -63,11 +63,7 @@ class PokemonListModel: ObservableObject {
 		isFavorite = !isFavorite
 		
 		if isFavorite {
-			if favorites.isEmpty {
-				fetchFavorites()
-			} else {
-				state = .loaded(favorites)
-			}
+			fetchFavorites()
 		} else {
 			if pokemons.isEmpty {
 				fetchPokemons(offset: offset, limit: limit)
@@ -163,7 +159,6 @@ class PokemonListModel: ObservableObject {
 			favoriteDataProvider.remove(pokemon.getElement())
 		}
 		
-		fetchFavorites()
 		pokemons.first(where: {$0.id == pokemon.id})?.isFavorite = pokemon.isFavorite
 	}
 	

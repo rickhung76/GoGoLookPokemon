@@ -80,9 +80,13 @@ extension PokemonViewModel: Hashable {
 	}
 }
 
-struct PokemonElement: Codable, Equatable {
+struct PokemonElement: Codable, Hashable {
 	let name: String
 	let url: String
+	
+	static func == (lhs: PokemonElement, rhs: PokemonElement) -> Bool {
+		lhs.name == rhs.name
+	}
 }
 
 struct PokemonList: Decodable {
@@ -97,6 +101,7 @@ struct FavoritePokemonList: Codable {
 	var pokemons: [PokemonElement]
 	
 	mutating func add(_ pokemon: PokemonElement) {
+		guard !pokemons.contains(pokemon) else { return }
 		self.pokemons.append(pokemon)
 	}
 	
