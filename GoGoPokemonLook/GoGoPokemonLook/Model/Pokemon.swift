@@ -20,6 +20,12 @@ class PokemonViewModel: ObservableObject {
 	let url: String
 	
 	@Published
+	var flavor: String?
+	
+	@Published
+	var evolves: [EvolutionChainViewModel]? = []
+	
+	@Published
 	var isFavorite: Bool
 	
 	var id: String {

@@ -27,11 +27,6 @@ protocol PokemonDetailModelDelegate: AnyObject {
 
 class PokemonDetailModel: ObservableObject {
 	
-	struct EvolutionChainViewModel: Hashable {
-		let chain: ChainElement
-		let isClickable: Bool
-	}
-	
 	let pokemon: PokemonViewModel
 	
 	weak var delegate: PokemonDetailModelDelegate?
@@ -58,17 +53,29 @@ class PokemonDetailModel: ObservableObject {
 		self.isFavorite = pokemon.isFavorite
 		self.dataProvider = dataProvider
 		self.delegate = delegate
+		self.setupDataBinding()
 		
 		if self.pokemon.detail == nil {
 			fetchPokemonDetail()
 		}
-		
+	}
+	
+	func setupDataBinding() {
 		pokemon.$isFavorite.sink { [weak self] in
 			self?.isFavorite = $0
+		}.store(in: &cancelable)
+		
+		pokemon.$flavor.sink { [weak self] in
+			self?.flavor = $0 ?? ""
+		}.store(in: &cancelable)
+		
+		pokemon.$evolves.sink { [weak self] in
+			self?.evolves = $0 ?? []
 		}.store(in: &cancelable)
 	}
 	
 	func fetchPokemonDetail() {
+		guard pokemon.detail == nil else { return }
 		dataProvider
 			.fetchDetail(pokemon.url)
 			.receive(on: DispatchQueue.main)
@@ -96,7 +103,7 @@ class PokemonDetailModel: ObservableObject {
 				guard let self else { return }
 				print(species.evolutionChain)
 				self.pokemon.species = species
-				self.flavor = species.getFlavor()
+				self.pokemon.flavor = species.getFlavor()
 				self.fetchEvolutionChain()
 			}.store(in: &cancelable)
 	}
@@ -110,7 +117,7 @@ class PokemonDetailModel: ObservableObject {
 				
 			} receiveValue: { [weak self] chain in
 				guard let self else { return }
-				self.evolves = chain
+				self.pokemon.evolves = chain
 					.chain
 					.allEvolvesRecursively
 					.map {

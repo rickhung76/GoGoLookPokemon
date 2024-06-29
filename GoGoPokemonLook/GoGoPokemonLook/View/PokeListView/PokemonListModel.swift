@@ -78,20 +78,29 @@ class PokemonListModel: ObservableObject {
 	}
 	
 	func fetchFavorites() {
+		state = .loading
 		
 		favoriteDataProvider
 			.fetch()
 			.receive(on: DispatchQueue.main)
-			.sink { _ in
+			.sink { [weak self] completion in
+					guard let self else { return }
+					
+				guard completion == .finished else { return }
+				self.state = .loaded(self.favorites)
 				
 			} receiveValue: { [weak self] model in
 				guard let self else { return }
-				let pokemons = model.pokemons.map{
-					PokemonViewModel(
-						name: $0.name,
-						url: $0.url,
-						isFavorite: true
-					)
+				let pokemons = model.pokemons.map { p in
+					if let pokemon = self.pokemons.first(where: { $0.name == p.name }) {
+						return pokemon
+					} else {
+						return PokemonViewModel(
+							name: p.name,
+							url: p.url,
+							isFavorite: true
+						)
+					}
 				}
 				pokemons.forEach {
 					self.fetchPokemonDetail($0)

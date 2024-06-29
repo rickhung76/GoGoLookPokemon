@@ -12,6 +12,11 @@ struct EvolutionChain: Decodable {
 	let id: Int
 }
 
+struct EvolutionChainViewModel: Hashable {
+	let chain: ChainElement
+	let isClickable: Bool
+}
+
 struct ChainElement: Decodable, Hashable {
 	let evolvesTo: [ChainElement]
 	let species: SpeciesElement
