@@ -38,7 +38,7 @@ final class PokemonDetailModelTests: XCTestCase {
 		let exp = XCTestExpectation(description: "fetchPokemonDetail")
 		
 		// Act
-		let model = PokemonDetailModel(pokemon: pokemon, dataProvider: dataProvider)
+		let model = PokemonDetailModel(pokemon: pokemon, delegate: nil, dataProvider: dataProvider)
 		model.pokemon.$detail
 			.sink { _ in
 				XCTFail()
@@ -58,7 +58,7 @@ final class PokemonDetailModelTests: XCTestCase {
 		let dataProvider = MockPokemonDetailModelDataProvider()
 		let element = PokemonElement(name: "bulbasaur", url: "https://test.pokemon/1")
 		let pokemon = PokemonViewModel(element: element)
-		let model = PokemonDetailModel(pokemon: pokemon, dataProvider: dataProvider)
+		let model = PokemonDetailModel(pokemon: pokemon, delegate: nil, dataProvider: dataProvider)
 		let pokemonDetail = PokemonDetail(
 			id: 1,
 			name: "name1",
@@ -100,7 +100,7 @@ final class PokemonDetailModelTests: XCTestCase {
 		let element = PokemonElement(name: name, url: "https://test.pokemon/1")
 		let pokemon = PokemonViewModel(element: element)
 		pokemon.detail = pokemonDetail
-		let model = PokemonDetailModel(pokemon: pokemon, dataProvider: dataProvider)
+		let model = PokemonDetailModel(pokemon: pokemon, delegate: nil, dataProvider: dataProvider)
 		
 		let flavor = FlavorTextEntry(
 			flavorText: "flavorText",
@@ -143,7 +143,7 @@ final class PokemonDetailModelTests: XCTestCase {
 		let element = PokemonElement(name: name, url: "https://test.pokemon/1")
 		let pokemon = PokemonViewModel(element: element)
 		pokemon.species = species
-		let model = PokemonDetailModel(pokemon: pokemon, dataProvider: dataProvider)
+		let model = PokemonDetailModel(pokemon: pokemon, delegate: nil, dataProvider: dataProvider)
 		let evolutionChain = EvolutionChain(
 			chain: ChainElement(
 				evolvesTo: [],
@@ -156,7 +156,7 @@ final class PokemonDetailModelTests: XCTestCase {
 			.chain
 			.allEvolvesRecursively
 			.map {
-				PokemonDetailModel.EvolutionChainViewModel(
+				EvolutionChainViewModel(
 					chain: $0,
 					isClickable: true
 				)
@@ -179,6 +179,25 @@ final class PokemonDetailModelTests: XCTestCase {
 		wait(for: [exp], timeout: 20)
 	}
 
+	func test_togglePokemonFavorite() {
+		// Arrange
+		class MockDelegate: PokemonDetailModelDelegate {
+			var delegatePokemon: PokemonViewModel? = nil
+			func togglePokemonFavorite(_ pokemon: PokemonViewModel) {
+				delegatePokemon = pokemon
+			}
+		}
+		let delegate = MockDelegate()
+		let dataProvider = MockPokemonDetailModelDataProvider()
+		let element = PokemonElement(name: "bulbasaur", url: "https://test.pokemon/1")
+		let pokemon = PokemonViewModel(element: element)
+		let model = PokemonDetailModel(pokemon: pokemon, delegate: delegate, dataProvider: dataProvider)
+				
+		// Act
+		model.togglePokemonFavorite()
+		// Assert
+		XCTAssertEqual(delegate.delegatePokemon, pokemon)
+	}
 }
 
 fileprivate class MockPokemonDetailModelDataProvider: PokemonDetailModelDataProvider {

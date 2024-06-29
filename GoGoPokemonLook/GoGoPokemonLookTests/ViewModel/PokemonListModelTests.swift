@@ -111,9 +111,100 @@ final class PokemonListModelTests: XCTestCase {
 		model.fetchPokemonDetail(mockPokemon)
 		wait(for: [exp], timeout: 5.0)
 	}
+	
+	func testToggleToFavorite_shouldReturnFavoritePokemons() throws {
+		// Arrange
+		let exp = XCTestExpectation(description: "\(#function)")
+		let dataProvider = MockPokemonDataProvider()
+		let favoriteProvider = MockFavoriteDataProvider()
+		favoriteProvider.favorites = [
+			PokemonElement(name: "Favorite1", url: "https://test.com/1"),
+			PokemonElement(name: "Favorite2", url: "https://test.com/2"),
+		]
+		let model = PokemonListModel(pokemonDataProvider: dataProvider, favoriteDataProvider: favoriteProvider)
+		
+		model.$state
+			.sink { state in
+				// Assert
+				switch state {
+				case .loaded(let pokemons):
+					XCTAssertTrue(model.isFavorite)
+					XCTAssertEqual(pokemons.map { $0.name }, ["Favorite1", "Favorite2"])
+					XCTAssertEqual(pokemons.map { $0.url }, ["https://test.com/1", "https://test.com/2"])
+					exp.fulfill()
+				default:
+					break
+				}
+			}.store(in: &cancelable)
+		
+		// Act
+		XCTAssertFalse(model.isFavorite)
+		model.toggleDataSource()
+		
+		wait(for: [exp], timeout: 5.0)
+	}
+	
+	func testToggleToPokemonList_shouldReturnExistPokemons() throws {
+		// Arrange
+		let exp = XCTestExpectation(description: "\(#function)")
+		let dataProvider = MockPokemonDataProvider()
+		let favoriteProvider = MockFavoriteDataProvider()
+		let model = PokemonListModel(pokemonDataProvider: dataProvider, favoriteDataProvider: favoriteProvider)
+		model.isFavorite = true
+		model.limit = 2
+		
+		model.$state
+			.sink { state in
+				// Assert
+				switch state {
+				case .loaded(let pokemons):
+					XCTAssertFalse(model.isFavorite)
+					XCTAssertEqual(pokemons.map { $0.name }, ["name0", "name1"])
+					XCTAssertEqual(pokemons.map { $0.url }, ["https://test.com/0", "https://test.com/1"])
+					exp.fulfill()
+				default:
+					break
+				}
+			}.store(in: &cancelable)
+		
+		// Act
+		XCTAssertTrue(model.isFavorite)
+		model.toggleDataSource()
+		
+		wait(for: [exp], timeout: 5.0)
+	}
+	
+	func testTogglePokemonFavorite() {
+		// Arrange
+		let exp = XCTestExpectation(description: "\(#function)")
+		let dataProvider = MockPokemonDataProvider()
+		let favoriteProvider = MockFavoriteDataProvider()
+		let model = PokemonListModel(pokemonDataProvider: dataProvider, favoriteDataProvider: favoriteProvider)
+		model.fetchPokemons(offset: 0, limit: 3)
+		let pokemon = PokemonViewModel(name: "name0", url: "http://test.com/0", isFavorite: false)
+		
+		model.$state.sink { state in
+			guard case .loaded(_) = state else { return }
+			// Act & Assert
+			model.togglePokemonFavorite(pokemon)
+			XCTAssertEqual(pokemon.isFavorite, true)
+			XCTAssertTrue(favoriteProvider.favorites.contains(pokemon.getElement()))
+			XCTAssertEqual(model.pokemons.first?.isFavorite, true)
+			
+			// Act & Assert
+			model.togglePokemonFavorite(pokemon)
+			XCTAssertEqual(pokemon.isFavorite, false)
+			XCTAssertFalse(favoriteProvider.favorites.contains(pokemon.getElement()))
+			XCTAssertEqual(model.pokemons.first?.isFavorite, false)
+			
+			exp.fulfill()
+		}.store(in: &cancelable)
+
+		wait(for: [exp], timeout: 5.0)
+	}
 }
 
-struct MockPokemonDataProvider: PokemonListModelDataProvider {
+fileprivate struct MockPokemonDataProvider: PokemonListModelDataProvider {
 	
 	func fetch(offset: Int, limit: Int) -> AnyPublisher<PokemonList, NSError> {
 		let subject = PassthroughSubject<PokemonList, NSError>()
@@ -154,7 +245,7 @@ struct MockPokemonDataProvider: PokemonListModelDataProvider {
 	}
 }
 
-struct MockPokemonFailureDataProvider: PokemonListModelDataProvider {
+fileprivate struct MockPokemonFailureDataProvider: PokemonListModelDataProvider {
 	
 	let error: NSError
 	
@@ -180,5 +271,25 @@ struct MockPokemonFailureDataProvider: PokemonListModelDataProvider {
 		}
 		
 		return subject.eraseToAnyPublisher()
+	}
+}
+
+fileprivate class MockFavoriteDataProvider: FavoriteDataProvider {
+	var favorites = [PokemonElement]()
+	
+	func fetch() -> AnyPublisher<FavoritePokemonList, Never> {
+		Just(FavoritePokemonList(pokemons: favorites)).eraseToAnyPublisher()
+	}
+	
+	func add(_ pokemon: PokemonElement) {
+		favorites.append(pokemon)
+	}
+	
+	func remove(_ pokemon: PokemonElement) {
+		favorites.removeAll(where: { $0 == pokemon })
+	}
+	
+	func isFavorite(_ pokemon: PokemonElement) -> Bool {
+		favorites.contains(pokemon)
 	}
 }

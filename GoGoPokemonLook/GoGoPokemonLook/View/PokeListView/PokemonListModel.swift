@@ -37,9 +37,9 @@ class PokemonListModel: ObservableObject {
 		isFavorite ? favorites : pokemons
 	}
 		
-	private var pokemons: [PokemonViewModel] = []
+	private(set) var pokemons: [PokemonViewModel] = []
 	
-	private var favorites: [PokemonViewModel] = []
+	private(set) var favorites: [PokemonViewModel] = []
 	
 	private let pokemonDataProvider: PokemonListModelDataProvider
 	
