@@ -31,6 +31,9 @@ class PokemonListModel: ObservableObject {
 	@Published
 	var state: State = .idle
 	
+	@Published
+	var showAlert: Bool = false
+	
 	var isFavorite: Bool = false
 	
 	var listElements: [PokemonViewModel] {
@@ -119,8 +122,10 @@ class PokemonListModel: ObservableObject {
 				case .finished:
 					self.offset += self.limit
 					self.state = .loaded(self.pokemons)
+					
 				case .failure(let error):
 					self.state = .error(error)
+					self.showAlert = true
 				}
 			} receiveValue: { [weak self] model in
 				guard let self else { return }

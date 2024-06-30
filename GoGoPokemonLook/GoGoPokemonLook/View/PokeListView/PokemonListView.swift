@@ -10,7 +10,7 @@ import FiredTofu
 
 struct PokemonListView: View {
 	
-	@ObservedObject var model = PokemonListModel()
+	@StateObject var model = PokemonListModel()
 	
 	var body: some View {
 		List(0 ..< model.listElements.count, id: \.self) { i in
@@ -52,6 +52,18 @@ struct PokemonListView: View {
 				Image(systemName: name)
 			}
 		}
+		.alert(isPresented: $model.showAlert) {
+			var error: NSError?
+			if case let .error(err) = model.state {
+				error = err
+			}
+			return Alert(
+				title: Text("Something went wrong"),
+				message: error.isNil ? nil : Text(error!.localizedDescription),
+				dismissButton: .default(Text("OK"))
+			)
+		}
+
 	}
 }
 
