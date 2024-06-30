@@ -11,7 +11,9 @@ import SwiftUI
 struct GoGoPokemonLookApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+			NavigationView {
+				PokemonListView()
+			}
         }
     }
 }
